@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+.firebase/
+/.firebaserc
+/.firebase
+/firebase.json
 
 # testing
 /coverage
@@ -11,9 +15,9 @@
 # production
 /build
 
+# IDE
 .idea
-.firebaserc
-firebase.json
+*.iml
 
 # misc
 .DS_Store
@@ -21,7 +25,7 @@ firebase.json
 .env.development.local
 .env.test.local
 .env.production.local
-.env
+/src/.env
 
 npm-debug.log*
 yarn-debug.log*

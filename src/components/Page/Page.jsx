@@ -6,14 +6,14 @@ import {AddModal} from "../AddModal/AddModal";
 import './Page.css'
 
 /**
- * Комопнент является главной страницей, на которой рендерятся карточки задач
+ * Комопнент является главной страницей, на которой рендерятся карточки задач.
  * @param props
  * @returns {JSX.Element}
  * @constructor
  */
 export function Page(props) {
     /**
-     * константа в которой хранится ссылка на коллекцию задач
+     * Константа в которой хранится ссылка на коллекцию задач.
      * @type {CollectionReference<DocumentData>}
      */
     const tasksCollectionRef = collection(db, 'tasks')
@@ -23,7 +23,7 @@ export function Page(props) {
     }, [])
 
     /**
-     * Метод получает документы с задачами из базы данных и устанавливает массив с данными в состояние
+     * Метод получает документы с задачами из базы данных и устанавливает массив с данными в состояние.
      * @returns {Promise<void>}
      */
     async function getData() {
