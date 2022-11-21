@@ -1,0 +1,109 @@
+import React, {useState} from 'react';
+import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
+import {db, storage} from "../../firebase";
+import {doc, updateDoc} from "firebase/firestore";
+import './EditModal.css'
+import dayjs from "dayjs";
+
+/**
+ * Компонент рендерит модальное окно для изменения задачи, в качестве пропсов принимает текущие данные
+ * из карточки и устнавливает их в состояние, для отображения в полях ввода
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
+export function EditModal(props) {
+    const [title, setTitle] = useState(props.title)
+    const [description, setDescription] = useState(props.description)
+    const [deadline, setDeadline] = useState(props.deadline)
+    const [file, setFile] = useState(props.file)
+    const [progress, setProgress] = useState([])
+    const [modal, setModal] = useState(false)
+
+    /**
+     * Метод тогглит состояние отображения или скрытия модального окна
+     */
+    function toggleModal() {
+        setModal(!modal)
+    }
+
+    /**
+     * Метод отвечает за отправку данных
+     * Создается ссылка на полный путь к файлу, метод uploadBytesResumable проводит загрузку файла
+     * в случае появления ошибки она выводится в консоль
+     * При завершении загрузки файла, будет получена ссылка на файл
+     * Как только промис вернул ссылку, будет создан запрос на создание записи в firestore
+     * В качестве id записи будет использован заголовок задачи
+     * Как только запись будет добавлена страница будет перезагружена
+     * @returns {Promise<void>}
+     */
+    async function uploadData() {
+        updateDoc(doc(db, "tasks", props.taskId), {
+            title: title,
+            description: description,
+            deadline: deadline,
+            complete: false
+        }).then(() => window.location.reload())
+    }
+
+    /**
+     * В константу записывается текущая дата в формате год-месяц-день
+     * @type {string}
+     */
+    const now = dayjs(new Date()).format('YYYY-MM-DD')
+    async function updateImage(e) {
+        const selectedfile = e.target.files[0];
+        if (selectedfile !== null) {
+            const fileRef = ref(storage, `files/${selectedfile.name}`)
+            const uploadFile = uploadBytesResumable(fileRef, selectedfile)
+
+            uploadFile.on('state_changed', (snapshot) => {
+                    const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                    setProgress(prog)
+                },
+                (error) => console.log(error),
+                () => {
+                    getDownloadURL(uploadFile.snapshot.ref)
+                        .then(url => {
+                            updateDoc(doc(db, 'tasks', title), {file: url})
+                        })
+                })
+        }
+    }
+    return (
+        <>
+            <button onClick={toggleModal} className={'edit-btn'}>Редактировать</button>
+
+            {modal &&
+                <div className="modal">
+                    <div className="overlay"></div>
+                    <div className="modal-content">
+                        <div className="form">
+                            <h1>Изменить задачу</h1>
+                            <div className="group">
+                                <label htmlFor="title" className="input-label">Заголовок</label>
+                                <input type="text" className="field" id={'title'} required placeholder={'Тестовый заголовок'} value={title} onChange={(e) => setTitle(e.target.value)}/>
+                            </div>
+                            <div className="group">
+                                <label htmlFor="description" className="input-label">Описание</label>
+                                <textarea className="textarea" id={'description'} required placeholder={'Тестовое описание'} onChange={(e) => setDescription(e.target.value)} value={description} rows={4}></textarea>
+                            </div>
+                            <div className="group">
+                                <label htmlFor="deadline" className="input-label">Срок выполнения</label>
+                                <input type="date" className="field" id={'deadline'} required value={deadline} onChange={(e) => setDeadline(e.target.value)} min={now}/>
+                            </div>
+                            <div className="group">
+                                <label htmlFor="file" className="input-label">Добавить вложение</label>
+                                <input type="file" className="field" id={'file'} onChange={updateImage}/>
+                            </div>
+                            <div className="btn-container">
+                                <button onClick={uploadData}>Изменить</button>
+                                <button onClick={toggleModal}>Отмена</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </>
+    );
+}

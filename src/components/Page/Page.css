@@ -1,0 +1,92 @@
+.tasks {
+  display: flex;
+  margin: 3rem 1rem;
+  flex-wrap: wrap;
+}
+.tasks .card {
+  width: 23%;
+  margin: 0 0.5rem;
+  border: 0.12rem solid grey;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+.tasks .card .complete-btn {
+  appearance: none;
+  border: none;
+  border-radius: 0.2rem;
+  height: 2rem;
+  color: #fff;
+  background-color: #68D391;
+  padding: 0.4rem;
+  margin: 0.3rem;
+}
+.tasks .card .complete-btn:hover {
+  transition: background-color ease 0.3s;
+  background-color: #48BB78;
+}
+.tasks .card .delete-btn {
+  appearance: none;
+  border: none;
+  border-radius: 0.2rem;
+  height: 2rem;
+  color: #fff;
+  background-color: #E53E3E;
+  padding: 0.4rem;
+  margin: 0.3rem;
+}
+.tasks .card .delete-btn:hover {
+  transition: background-color ease 0.3s;
+  background-color: #C53030;
+}
+.tasks .card .edit-btn {
+  appearance: none;
+  border: none;
+  border-radius: 0.2rem;
+  height: 2rem;
+  color: #fff;
+  background-color: #4299E1;
+  padding: 0.4rem;
+  margin: 0.3rem;
+}
+.tasks .card .edit-btn:hover {
+  transition: background-color ease 0.3s;
+  background-color: #3182CE;
+}
+.tasks .complete {
+  border-color: #68D391 !important;
+  background-color: #C6F6D5 !important;
+}
+.tasks .overdue {
+  border-color: #F56565;
+  background-color: #FED7D7;
+}
+@media (max-width: 1025px) {
+  .tasks .card {
+    width: 33%;
+  }
+  .tasks .card .complete-btn {
+    width: 100%;
+  }
+  .tasks .card .edit-btn {
+    width: 100%;
+  }
+  .tasks .card .delete-btn {
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .tasks .card {
+    width: 100%;
+    margin-bottom: 0.4rem;
+  }
+  .tasks .card .complete-btn {
+    width: 100%;
+  }
+  .tasks .card .edit-btn {
+    width: 100%;
+  }
+  .tasks .card .delete-btn {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=Page.css.map */

@@ -1,0 +1,97 @@
+.tasks {
+  display: flex;
+  margin: 3rem 1rem;
+  flex-wrap: wrap;
+  .card {
+    width: 23%;
+    margin: 0 .5rem;
+    border: .12rem solid grey;
+    border-radius: .5rem;
+    padding: .5rem;
+
+    .complete-btn {
+      appearance: none;
+      border: none;
+      border-radius: .2rem;
+      height: 2rem;
+      color: #fff;
+      background-color: #68D391;
+      padding: .4rem;
+      margin: .3rem;
+      &:hover {
+        transition: background-color ease .3s;
+        background-color: #48BB78;
+      }
+    }
+    .delete-btn {
+      appearance: none;
+      border: none;
+      border-radius: .2rem;
+      height: 2rem;
+      color: #fff;
+      background-color: #E53E3E;
+      padding: .4rem;
+      margin: .3rem;
+      &:hover {
+        transition: background-color ease .3s;
+        background-color: #C53030;
+      }
+    }
+    .edit-btn {
+      appearance: none;
+      border: none;
+      border-radius: .2rem;
+      height: 2rem;
+      color: #fff;
+      background-color: #4299E1;
+      padding: .4rem;
+      margin: .3rem;
+      &:hover {
+        transition: background-color ease .3s;
+        background-color: #3182CE;
+      }
+    }
+  }
+  .complete {
+    border-color: #68D391 !important;
+    background-color: #C6F6D5 !important;
+  }
+  .overdue {
+    border-color: #F56565;
+    background-color: #FED7D7;
+  }
+}
+
+@media (max-width: 1025px) {
+  .tasks {
+    .card {
+      width: 33%;
+      .complete-btn {
+        width: 100%;
+      }
+      .edit-btn {
+        width: 100%;
+      }
+      .delete-btn {
+        width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .tasks {
+    .card {
+      width: 100%;
+      margin-bottom: .4rem;
+      .complete-btn {
+        width: 100%;
+      }
+      .edit-btn {
+        width: 100%;
+      }
+      .delete-btn {
+        width: 100%;
+      }
+    }
+  }
+}

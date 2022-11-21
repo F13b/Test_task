@@ -1,0 +1,28 @@
+.task-title {
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+}
+.container {
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+.container .description-title {
+  text-align: left;
+  margin: 0 0 0.5rem 0;
+}
+.container .description {
+  text-align: left;
+  margin: 0;
+}
+.container .file-title {
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+}
+.container .task-file {
+  text-align: left;
+}
+.deadline {
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+}
+/*# sourceMappingURL=TaskCard.css.map */

@@ -1,0 +1,58 @@
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #fff;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 700px;
+  min-width: 300px;
+  height: 450px;
+}
+.modal-content .form {
+  display: flex;
+  flex-direction: column;
+}
+.modal-content .form .group {
+  margin: 0.5rem 0;
+  width: 100%;
+  text-align: left;
+}
+.modal-content .form .group .input-label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.modal-content .form .group .field {
+  height: 1.5rem;
+  width: 100%;
+}
+.modal-content .form .group .textarea {
+  resize: none;
+  width: 100%;
+}
+.modal-content .form .btn-container {
+  display: flex;
+  justify-content: space-around;
+}
+/*# sourceMappingURL=EditModal.css.map */
